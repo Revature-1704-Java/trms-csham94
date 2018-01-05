@@ -5,30 +5,36 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.revature.dao.ReimbursementDAO;
 
-public class CreateServlet extends HttpServlet {
+public class ChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public CreateServlet() {
+    public ChangeServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    request.getRequestDispatcher("create.html").include(request, response);
+		int r_id = Integer.parseInt(request.getParameter("R_id"));
+		String r_change = request.getParameter("R_change");
+		if (r_change.equals("approve") ) {
+			ReimbursementDAO.giveApprove(r_id);
+		} else {
+			ReimbursementDAO.giveDeny(r_id);
+		}
+		
+		response.sendRedirect("display");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession mySession = request.getSession();
-		int type = Integer.parseInt(request.getParameter("type"));
-	    double cost = Double.parseDouble(request.getParameter("cost"));
-	    String info = request.getParameter("info");
-	    String location = request.getParameter("location");
-	    int id = (int) mySession.getAttribute("employee");
-	    ReimbursementDAO.createRequest(type, cost, id, info, location);
+		int r_id = Integer.parseInt(request.getParameter("R_id"));
+		String r_change = request.getParameter("R_change");
+		if (r_change.equals("approve") ) {
+			ReimbursementDAO.giveApprove(r_id);
+		} else {
+			ReimbursementDAO.giveDeny(r_id);
+		}
 		response.sendRedirect("display");
 	}
 

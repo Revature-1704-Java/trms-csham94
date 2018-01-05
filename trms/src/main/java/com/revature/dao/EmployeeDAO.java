@@ -80,7 +80,7 @@ public class EmployeeDAO {
 					sup = 0;
 				}
 				
-				e = new Employee(id, firstName, lastName, password, email, title, availReim, depHead, sup);
+				e = new Employee(eid, firstName, lastName, password, email, title, availReim, depHead, sup);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -121,14 +121,9 @@ public class EmployeeDAO {
 				String eemail = rs.getString("Email");
 				int title = rs.getInt("TitleID");
 				double availReim = rs.getDouble("AvailableReimbursement");
-				Integer depHead = rs.getInt("DepartmentHead");
-				if (depHead == null) {
-					depHead = 0;
-				}
-				Integer sup = rs.getInt("Supervisor");
-				if (sup == null) {
-					sup = 0;
-				}
+				int depHead = rs.getInt("DepartmentHead");
+				int sup = rs.getInt("Supervisor");
+				
 				
 				e = new Employee(id, firstName, lastName, password, eemail, title, availReim, depHead, sup);
 			}

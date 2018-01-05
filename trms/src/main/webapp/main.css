@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+body {
+	font: 15px/1.5 Arial, Helvetica, sans-serif;
+	margin: auto;
+	width: 50%;
+	padding: 5em;
+	background-color: white;
+}

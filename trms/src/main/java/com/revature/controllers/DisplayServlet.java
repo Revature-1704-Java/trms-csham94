@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Reimbursement;
 import com.revature.dao.ReimbursementDAO;
@@ -23,9 +24,24 @@ public class DisplayServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		List<Reimbursement> reimbursements = ReimbursementDAO.getAllReimbursements();
-		out.println("<table>");
+		HttpSession mySession = request.getSession();
+	    int title = (int) mySession.getAttribute("title");
+	    int empId = (int) mySession.getAttribute("employee");
+		List<Reimbursement> reimbursements = null;
+
+		if (title == 1) {
+			reimbursements = ReimbursementDAO.getReimbursementsByStatus(3);
+		} else if (title == 4) {
+			reimbursements = ReimbursementDAO.getReimbursementsByStatus(2);
+		} else if (title == 2) {
+			reimbursements = ReimbursementDAO.getReimbursementsByStatus(4);
+		} else {
+			reimbursements = ReimbursementDAO.getReimbursementsByEmployee(empId);
+		}
+		out.println("<table>");		
+		out.println("<form action=\"change\" method=\"GET\">");
 		out.println("<tr>");
+		out.println("<th>&nbsp;</th>");
 		out.println("<th>Type</th>");
 		out.println("<th>Total Cost</th>");
 		out.println("<th>Status</th>");
@@ -39,6 +55,9 @@ public class DisplayServlet extends HttpServlet {
 		out.println("</tr>");
 		for (Reimbursement re: reimbursements) {
 			out.println("<tr>");
+			out.println("<td>"
+					+ "<input type=\"radio\" name=\"R_id\" value=\"" + re.getR_id() + "\" >"
+					+ "</td>");
 			out.println("<td>" + re.getR_type() + "</td>");
 			out.println("<td>" + re.getR_cost() + "</td>");
 			out.println("<td>" + re.getR_status() + "</td>");
@@ -51,6 +70,9 @@ public class DisplayServlet extends HttpServlet {
 			out.println("<td>" + re.getR_denialReason() + "</td>");
 			out.println("</tr>");
 		}
+		out.println("<input type=\"submit\" name=\"change\" value=\"deny\">");
+		out.println("<input type=\"submit\" name=\"change\" value=\"approve\">");
+		out.println("</form>");
 		out.println("</table>");
 	    request.getRequestDispatcher("display.html").include(request, response);
 		

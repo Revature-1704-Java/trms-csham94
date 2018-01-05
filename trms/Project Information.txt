@@ -1,0 +1,29 @@
+TRMS PROGRAM
+
+Program can:
+-allow user to login
+-displays certain requests to certain user types
+-allow a user to accept or deny a requet
+-create a new request
+
+Program needs to do:
+-have more values for creating a request
+-have the ability to add info to a request
+-have heavy validation
+
+Program has: 
+-RDS
+-Stored Procedures
+-DAOs
+-an ERD
+-build by Maven
+-(minimal) Documentation
+-Servlets
+-HTML/CSS
+
+Project neeeds:
+-Factories/Singletons
+-JUnit
+-log4j
+-JS
+-AJAX

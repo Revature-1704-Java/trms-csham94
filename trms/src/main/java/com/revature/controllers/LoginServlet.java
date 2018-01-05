@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 		if (emp != null) {
 			if(password.equals(emp.getE_password())) {
 				request.getSession().setAttribute("employee", emp.getE_id());
+				request.getSession().setAttribute("title", emp.getE_title());
 				response.getWriter().append(emp.getE_firstName());
 				response.sendRedirect("display");
 			} else {
