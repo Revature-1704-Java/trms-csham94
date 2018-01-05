@@ -16,14 +16,45 @@
   	<description></description>
   	<servlet-class>com.revature.controllers.TableServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<display-name>LogoutServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controllers.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DisplayServlet</servlet-name>
+  	<display-name>DisplayServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controllers.DisplayServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CreateServlet</servlet-name>
+  	<display-name>CreateServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.controllers.CreateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/LoginServlet</url-pattern>
+  	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>TableServlet</servlet-name>
   	<url-pattern>/TableServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DisplayServlet</servlet-name>
+  	<url-pattern>/display</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateServlet</servlet-name>
+  	<url-pattern>/create</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

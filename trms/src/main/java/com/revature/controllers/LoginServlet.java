@@ -6,34 +6,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LoginServlet
- */
+import com.revature.beans.Employee;
+import com.revature.dao.EmployeeDAO;
+
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String email = request.getParameter("email");
+	    String password = request.getParameter("pass");
+		Employee emp = EmployeeDAO.getEmployeeByEmail(email);
+		if (emp != null) {
+			if(password.equals(emp.getE_password())) {
+				request.getSession().setAttribute("employee", emp.getE_id());
+				response.getWriter().append(emp.getE_firstName());
+				response.sendRedirect("display");
+			} else {
+				response.getWriter().append("Incorrect Password");
+			}
+		} else {
+			response.getWriter().append("Invalid Email");
+		}
 	}
 
 }
