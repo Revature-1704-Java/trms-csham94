@@ -147,36 +147,4 @@ public class EmployeeDAO {
 		}
 		return e;
 	}
-	
-//	public static String getTitle(int titleID) {
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		String t = "";
-//		try(Connection conn = ConnectionUtil.getConnection()) {
-//			String sql = "SELECT TitleName FROM Title WHERE TitleID = ?";
-//			ps = conn.prepareStatement(sql);
-//			ps.setInt(1, titleID);
-//			
-//			rs = ps.executeQuery();
-//			t = rs.getString("TitleName");
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			if (ps != null) {
-//				try {
-//					ps.close();
-//				} catch (SQLException ex) {
-//					ex.printStackTrace();
-//				}
-//			}
-//			if (rs != null) {
-//				try {
-//					rs.close();
-//				} catch (SQLException ex) {
-//					ex.printStackTrace();
-//				}
-//			}
-//		}
-//		return t;
-//	}
 }

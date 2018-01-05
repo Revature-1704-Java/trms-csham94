@@ -223,7 +223,7 @@ public class ReimbursementDAO {
 	public static void giveApprove(int id) {
 		CallableStatement cs = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "{CALL SP_Approve_Status(?, ?)}";
+			String sql = "{CALL SP_Approve_Status(?)}";
 			cs = conn.prepareCall(sql);
 			cs.setInt(1, id);
 			
@@ -242,7 +242,7 @@ public class ReimbursementDAO {
 	public static void giveDeny(int id) {
 		CallableStatement cs = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "{CALL SP_Deny_Status(?, ?)}";
+			String sql = "{CALL SP_Deny_Status(?)}";
 			cs = conn.prepareCall(sql);
 			cs.setInt(1, id);
 			
@@ -258,69 +258,3 @@ public class ReimbursementDAO {
 		}
 	}
 }
-
-	/*public String getStatus(int statusID) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String t = "";
-		try(Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT StatusName FROM Status WHERE StatusID = ?";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, statusID);
-		
-			rs = ps.executeQuery();
-			t = rs.getString("StatusName");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return t;
-	}
-}*/
-	
-	/*public static String getType(int typeID) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String t = "";
-		try(Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT TypeDesc FROM EventType WHERE TypeID = ?";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, typeID);
-		
-			rs = ps.executeQuery();
-			t = rs.getString("TypeDesc");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return t;
-	}
-}*/

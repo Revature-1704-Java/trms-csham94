@@ -17,24 +17,29 @@ public class ChangeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int r_id = Integer.parseInt(request.getParameter("R_id"));
-		String r_change = request.getParameter("R_change");
+		String r_change = request.getParameter("changeStatus");
+		System.out.println(r_id);
+		System.out.println(r_change);
 		if (r_change.equals("approve") ) {
 			ReimbursementDAO.giveApprove(r_id);
 		} else {
 			ReimbursementDAO.giveDeny(r_id);
 		}
 		
-		response.sendRedirect("display");
+	    request.getRequestDispatcher("display.html").include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int r_id = Integer.parseInt(request.getParameter("R_id"));
-		String r_change = request.getParameter("R_change");
+		String r_change = request.getParameter("changeStatus");
+		System.out.println(r_id);
+		System.out.println(r_change);
 		if (r_change.equals("approve") ) {
 			ReimbursementDAO.giveApprove(r_id);
 		} else {
 			ReimbursementDAO.giveDeny(r_id);
 		}
+		
 		response.sendRedirect("display");
 	}
 

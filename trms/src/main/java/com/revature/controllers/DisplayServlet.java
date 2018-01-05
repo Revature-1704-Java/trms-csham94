@@ -39,7 +39,7 @@ public class DisplayServlet extends HttpServlet {
 			reimbursements = ReimbursementDAO.getReimbursementsByEmployee(empId);
 		}
 		out.println("<table>");		
-		out.println("<form action=\"change\" method=\"GET\">");
+		out.println("<form action=\"change\" method=\"POST\">");
 		out.println("<tr>");
 		out.println("<th>&nbsp;</th>");
 		out.println("<th>Type</th>");
@@ -70,8 +70,8 @@ public class DisplayServlet extends HttpServlet {
 			out.println("<td>" + re.getR_denialReason() + "</td>");
 			out.println("</tr>");
 		}
-		out.println("<input type=\"submit\" name=\"change\" value=\"deny\">");
-		out.println("<input type=\"submit\" name=\"change\" value=\"approve\">");
+		out.println("<input type=\"submit\" name=\"changeStatus\" value=\"deny\">");
+		out.println("<input type=\"submit\" name=\"changeStatus\" value=\"approve\">");
 		out.println("</form>");
 		out.println("</table>");
 	    request.getRequestDispatcher("display.html").include(request, response);

@@ -19,7 +19,7 @@ Program has:
 -build by Maven
 -(minimal) Documentation
 -Servlets
--HTML/CSS
+-HTML/(minimal) CSS
 
 Project neeeds:
 -Factories/Singletons
