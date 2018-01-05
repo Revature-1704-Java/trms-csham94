@@ -172,8 +172,6 @@ begin
 end;
 /
 
-conn trms_user/trmsp4ssw0rd;
-
 create or replace procedure
 SP_Approve_Status(R_ID in number) as
 begin
